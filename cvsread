@@ -1,0 +1,25 @@
+%Read edges and vertices from the files
+Vertices = xlsread('nodes.csv');
+Edges = xlsread('edges.csv');
+
+%Obtain x and y arrays
+for i=1:267
+x(i)=Vertices(i,2);
+y(i)=Vertices(i,3);
+end
+
+%Obtain A and B arrays
+for i=1:265
+A(i)=Edges(i,2);
+B(i)=Edges(i,3);
+end
+
+%Define temporary arrays for edge length calculation
+tempX=x(A)-x(B);
+tempY=y(A)-y(B);
+
+%Create adjacency matrix and length matrix(w)
+for i=1:265
+w(i)=sqrt((tempX(i))^2+(tempY(i))^2);
+Adjacency(A(i),B(i))=1;
+end
